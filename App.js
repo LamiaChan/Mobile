@@ -1,24 +1,31 @@
+import React, { useState } from "react";
 import { AppRegistry } from 'react-native';
-import { Provider as PaperProvider, MD3LightTheme as DefaultTheme } from 'react-native-paper';
-import Base from './src/Base';
+import { Provider as PaperProvider, DarkTheme as MDTheme} from 'react-native-paper';
+import { NavigationContainer, DarkTheme as NavTheme } from '@react-navigation/native';
 import { name as appName } from './app.json';
+import merge from 'deepmerge';
+import Base from './src/Base';
 
+const DefaultTheme = merge(MDTheme, NavTheme);
 const theme = {
   ...DefaultTheme,
-  roundness: 2,
-  version: 3,
+  version: 1,
   colors: {
     ...DefaultTheme.colors,
-    primary: 'red',
-    secondary: '#f1c40f',
-    tertiary: '#a1b2c3'
+    surface: '#313131',
+    background: '#313131',
+    headerColor: '#B52959',
+    likeColor: '#F5574B',
   },
 };
 
 export default function App() {
+  const [children, setChild] = useState();
   return (
     <PaperProvider theme={theme}>
-      <Base />
+      <NavigationContainer theme={theme}>
+        <Base />
+      </NavigationContainer>
     </PaperProvider>
   );
 }
