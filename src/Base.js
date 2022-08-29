@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Feed from './Pages/Feed';
-import Catalog from './Pages/Catalog';
+
+import FeedNavigation from './Pages/Feed';
+import CatalogNavigation from './Pages/Catalog';
 
 export default function Base() {
   const Tab = createMaterialBottomTabNavigator();
@@ -15,8 +16,8 @@ export default function Base() {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="Feed"
-        component={Feed}
+        name="FeedNavigation"
+        component={FeedNavigation}
         options={{
           tabBarLabel: 'Feed',
           headerShown: true,
@@ -26,8 +27,8 @@ export default function Base() {
         }}
       />
       <Tab.Screen
-        name="Catalog"
-        component={Catalog}
+        name="CatalogNavigation"
+        component={CatalogNavigation}
         options={{
           tabBarLabel: 'Catalog',
           tabBarIcon: ({ color }) => (

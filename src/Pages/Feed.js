@@ -1,45 +1,33 @@
 import { BasicMangaCard } from '../components/ContentCards';
-import { BasicPreview } from '../components/ContentViews';
+import { RowScrollPreview } from '../components/ContentViews';
 import { ScrollView } from 'react-native';
-import MangaDetail from './MangaDetail'
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LamiaChanAppBar from '../AppBar/LamiaChanAppBar';
 
-const Stack = createNativeStackNavigator();
+import MangaDetail from './MangaDetail';
+import Stack from '../Navigation/Stack';
 
-const Profile = () => { return (null) }
-const Settings = () => { return (null) }
 
-function FeedBaseActivity() {
+function Feed() {
   const cards = [...Array(5)].map((_v, i) => (
-    <BasicMangaCard/>
+    <BasicMangaCard key={i} />
   ))
 
   return (
     <ScrollView style={{marginTop: 10}}>
-      <BasicPreview cards={cards} />
-      <BasicPreview cards={cards} />
+      <RowScrollPreview cards={cards} />
+      <RowScrollPreview cards={cards} />
     </ScrollView>
   )
 }
 
-function Feed() {
+export default function FeedNavigation() {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        header: (props) => <LamiaChanAppBar {...props} />,
-      }}
-    >
-      <Stack.Screen
-        name="FeedBaseActivity"
-        component={FeedBaseActivity}
-      />
-      <Stack.Screen
-        name="MangaDetail"
-        component={MangaDetail}
-      />
-    </Stack.Navigator>
+    <Stack
+      screens={
+        [
+          {name: 'Feed', component: Feed},
+          {name: 'MangaDetail', component: MangaDetail},
+        ]
+      }
+    />
   )
 }
-
-export default Feed;
