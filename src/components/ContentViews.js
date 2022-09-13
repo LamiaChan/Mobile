@@ -1,6 +1,7 @@
 import { Fragment, useState, forwardRef, useImperativeHandle } from 'react';
 import { Text, Surface, List, Chip, useTheme, DataTable, RadioButton, Appbar as PaperAppBar } from 'react-native-paper';
 import { ScrollView, StyleSheet, View, SafeAreaView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialTabs from 'react-native-material-tabs';
 import { Menu, MenuItem } from 'react-native-material-menu';
@@ -94,6 +95,7 @@ export function BasicDetail(props) {
   const [visible, setVisible] = useState(false);
   const hideMenu = () => setVisible(false);
   const showMenu = () => setVisible(true);
+  const navigation = useNavigation();
 
   function informationTab() {
     return (
@@ -253,13 +255,19 @@ export function BasicDetail(props) {
             }
             onRequestClose={hideMenu}
           >
-              <MenuItem onPress={hideMenu}>
+              <MenuItem
+                onPress={() => {
+                  hideMenu;
+                  navigation.navigate('MangaRead', {
+                    slug: slug,
+                  });
+                }}
+              >
                 <View style={BasicDetailStyles.flexRowContainerCenter}>
                   <MaterialCommunityIcons
                     name="play"
                     color='#FFFFFF'
                     size={25}
-                    onPress={showMenu}
                   />
                   <Text style={BasicDetailStyles.basicText}>Read</Text>
                 </View>
@@ -270,7 +278,6 @@ export function BasicDetail(props) {
                     name="heart"
                     color={theme.colors.likeColor}
                     size={25}
-                    onPress={showMenu}
                   />
                   <Text style={BasicDetailStyles.basicText}>Like</Text>
                 </View>
@@ -281,7 +288,6 @@ export function BasicDetail(props) {
                     name="book"
                     color='#A65100'
                     size={25}
-                    onPress={showMenu}
                   />
                   <Text style={BasicDetailStyles.basicText}>Bookmark</Text>
                 </View>
@@ -292,7 +298,6 @@ export function BasicDetail(props) {
                     name="share"
                     color='#FEC107'
                     size={25}
-                    onPress={showMenu}
                   />
                   <Text style={BasicDetailStyles.basicText}>Share</Text>
                 </View>
@@ -324,9 +329,9 @@ export function BasicDetail(props) {
   )
 }
 
-function imageView(props) {
+export function ImageView(props) {
   return (
-    <Text>Test</Text>
+    <Text>{props.slug}</Text>
   )
 }
 

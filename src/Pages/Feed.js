@@ -1,8 +1,7 @@
 import { BasicMangaCard } from '../components/ContentCards';
 import { RowScrollPreview } from '../components/ContentViews';
 import { ScrollView } from 'react-native';
-
-import MangaDetail from './MangaDetail';
+import { MangaDetail, MangaRead } from './MangaPage';
 import Stack from '../Navigation/Stack';
 
 
@@ -26,6 +25,7 @@ export default function FeedNavigation() {
         [
           {name: 'Feed', component: Feed},
           {name: 'MangaDetail', component: MangaDetail},
+          {name: 'MangaRead', component: MangaRead}
         ]
       }
     />

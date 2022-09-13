@@ -6,6 +6,8 @@ import { NavigationContainer, DarkTheme as NavTheme } from '@react-navigation/na
 import { name as appName } from './app.json';
 import merge from 'deepmerge';
 import Base from './src/Base';
+import { Provider as ReduxProvider} from 'react-redux';
+import { store } from "./src/store";
 import 'react-native-gesture-handler';
 
 const DefaultTheme = merge(MDTheme, NavTheme);
@@ -25,14 +27,16 @@ const theme = {
 
 export default function App() {
   return (
-    <PaperProvider theme={theme}>
-      <NavigationContainer theme={theme}>
-        <Fragment>
-          <Base />
-          <StatusBar style="light" />
-        </Fragment>
-      </NavigationContainer>
-    </PaperProvider>
+    <ReduxProvider store={store}>
+      <PaperProvider theme={theme}>
+        <NavigationContainer theme={theme}>
+          <Fragment>
+            <Base />
+            <StatusBar style="light" />
+          </Fragment>
+        </NavigationContainer>
+      </PaperProvider>
+    </ReduxProvider>
   );
 }
 

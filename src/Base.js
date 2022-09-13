@@ -7,11 +7,6 @@ import CatalogNavigation from './Pages/Catalog';
 
 export default function Base() {
   const Tab = createMaterialBottomTabNavigator();
-  // const [routes] = React.useState([
-  //   { key: 'feed', title: 'Feed', focusedIcon: 'book-open-blank-variant'},
-  //   { key: 'catalog', title: 'Catalog', focusedIcon: 'format-list-bulleted' },
-  //   //{ key: 'profile', title: 'Profile', focusedIcon: 'account-circle' }
-  // ]);
 
   return (
     <Tab.Navigator>
