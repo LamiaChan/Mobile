@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { RecoilRoot, useRecoilState } from "recoil";
 import { AppRegistry } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Provider as PaperProvider, DarkTheme as MDTheme} from 'react-native-paper';
@@ -6,9 +7,11 @@ import { NavigationContainer, DarkTheme as NavTheme } from '@react-navigation/na
 import { name as appName } from './app.json';
 import merge from 'deepmerge';
 import Base from './src/Base';
-import { Provider as ReduxProvider} from 'react-redux';
-import { store } from "./src/store";
+import AppIntro from "./src/components/AppIntro";
 import 'react-native-gesture-handler';
+
+import { firstTimeOpened } from "./src/atoms/user";
+
 
 const DefaultTheme = merge(MDTheme, NavTheme);
 const theme = {
@@ -25,18 +28,27 @@ const theme = {
   },
 };
 
+function AppWrapper() {
+  const [fto, setFto] = useRecoilState(firstTimeOpened);
+  if (fto) {
+    return (<AppIntro />)
+  } else {
+    return (<Base />)
+  }
+}
+
 export default function App() {
   return (
-    <ReduxProvider store={store}>
+    <RecoilRoot>
       <PaperProvider theme={theme}>
         <NavigationContainer theme={theme}>
           <Fragment>
-            <Base />
+            <AppWrapper />
             <StatusBar style="light" />
           </Fragment>
         </NavigationContainer>
       </PaperProvider>
-    </ReduxProvider>
+    </RecoilRoot>
   );
 }
 
