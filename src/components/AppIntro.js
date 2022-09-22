@@ -30,22 +30,22 @@ const styles = StyleSheet.create({
 const slides = [
   {
     key: 1,
-    title: 'Title 1',
-    text: 'Description.\nSay something cool',
+    title: 'Welcome to Lamia Chan',
+    text: 'Another manga reader',
     //image: require('./assets/1.jpg'),
     backgroundColor: '#59b2ab',
   },
   {
     key: 2,
-    title: 'Title 2',
-    text: 'Other cool stuff',
+    title: 'Use as you like',
+    text: `If you doesn't want to use our manga database, you can import manga/comics scans from phone or use own server`,
     //image: require('./assets/2.jpg'),
     backgroundColor: '#febe29',
   },
   {
     key: 3,
-    title: 'Rocket guy',
-    text: 'I\'m already out of descriptions\n\nLorem ipsum bla bla bla',
+    title: 'Select app mode',
+    text: '',
     //image: require('./assets/3.jpg'),
     backgroundColor: '#22bcb5',
   }
